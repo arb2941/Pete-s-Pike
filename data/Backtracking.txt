@@ -1,0 +1,50 @@
+1. What state will your configuration need to keep track of as it attempts to find a solution?
+- We will need to keep track of the : board state, number of moves made, and list of possible moves 
+
+2.How will you make successor configurations?
+- iterate over list of possible moves and apply each move to current board to create new configuartion 
+
+3.How will you determine if a configuration is invalid?
+- if there are no possible moves to make on the current board
+(ex:public boolean isInvalid(Configuration config) {
+    return config.getBoard().getPossibleMoves().isEmpty();
+}
+)
+
+4.How will you determine if the configuration is the goal?
+- when no possible moves are available and game is won
+(ex:public boolean isGoal(Configuration config) {
+    return config.getBoard().getGameState() == GameState.WON;
+}
+)
+
+5.Do you need to be concerned with cycles? If so, how will you avoid them?
+-I think we do need to be concerned with cycles to avoid redoing the same board over and over again.
+ To avoid that we can keep track of the visited board states ( Hash set )
+ (ex: private Set<PetesPike> visited = new HashSet<>();
+
+public boolean isVisited(PetesPike board) {
+    return visited.contains(board);
+}
+
+public void markVisited(PetesPike board) {
+    visited.add(board);
+}
+
+// public List<Configuration> getSuccessors(Configuration config) {
+    List<Configuration> successors = new ArrayList<>();
+    List<Move> possibleMoves = config.getBoard().getPossibleMoves();
+
+    for (Move move : possibleMoves) {
+        Configuration successor = applyMove(config, move);
+        
+        if (!isVisited(successor.getBoard())) {
+            successors.add(successor);
+            markVisited(successor.getBoard());
+        }
+    }
+
+    return successors;
+}
+
+)

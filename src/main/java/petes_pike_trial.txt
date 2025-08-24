@@ -1,0 +1,13 @@
+Orange down - (0,2) -> (2,2)
+Orange left - (2,2) -> (2,1)
+Blue down - (0,1) -> (1,1)
+Green left - (1,4) -> (1,2)
+Pete up - (3,2) -> (2,2)
+
+or
+
+Orange down - (0,2) -> (2,2)
+Orange left - (2,2) -> (2,1)
+Orange up - (2,1) -> (1,1)
+Green left - (1,4) -> (1,2)
+Pete up - (3,2) -> (2,2)
